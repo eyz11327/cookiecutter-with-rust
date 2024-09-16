@@ -21,6 +21,7 @@ Describe the file structure
 
 ```cd {{ cookiecutter.project_slug | replace('-', '_') | replace('_', '\\_') }}/rust_files/```
 ```cargo build --release```
+```pip install -e .```
 
 Then local setup can be accomplished by running ```pip install -e .``` in the main directory
 
