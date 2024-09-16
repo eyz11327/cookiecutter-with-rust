@@ -9,7 +9,7 @@ import logging
 
 logging.basicConfig(
     level="DEBUG",
-    format="{{ cookiecutter.project_slug | upper | replace('-', '_')}} - %(module)s - %(level)s - %(message)s"
+    format="{{ cookiecutter.project_slug | upper | replace('-', '_')}} - %(module)s - %(message)s"
 )
 logger = logging.getLogger("bin")
 
@@ -21,11 +21,11 @@ logger.info(f"CWD: {cwd}")
 system = platform.system()
 rust_lib = None
 if system == "Linux":
-    rust_lib = ctypes.CDLL(os.path.join("target", "release", "lib{{ cookiecutter.project_slug | replace('-', '_') }}.so"))
+    rust_lib = ctypes.CDLL(os.path.join("{{ cookiecutter.project_slug | replace('-', '_') }}_rust_files", "target", "release", "lib{{ cookiecutter.project_slug | replace('-', '_') }}.so"))
 elif system == "Darwin":
-    rust_lib = ctypes.CDLL(os.path.join("target", "release", "lib{{ cookiecutter.project_slug | replace('-', '_') }}.dylib"))
+    rust_lib = ctypes.CDLL(os.path.join("{{ cookiecutter.project_slug | replace('-', '_') }}_rust_files", "target", "release", "lib{{ cookiecutter.project_slug | replace('-', '_') }}.dylib"))
 elif system == "Windows":
-    rust_lib = ctypes.CDLL(os.path.join("target", "release", "{{ cookiecutter.project_slug | replace('-', '_') }}.dll"))
+    rust_lib = ctypes.CDLL(os.path.join("{{ cookiecutter.project_slug | replace('-', '_') }}_rust_files", "target", "release", "{{ cookiecutter.project_slug | replace('-', '_') }}.dll"))
 else:
     logger.fatal("Unsupported operating system")
     sys.exit(-1)

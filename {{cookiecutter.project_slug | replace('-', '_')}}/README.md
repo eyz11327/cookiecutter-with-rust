@@ -19,6 +19,9 @@ Describe the file structure
 
 ## Setup
 
-Local setup can be accomplished by running ```pip install -e .``` in the main directory
+```cd {{ cookiecutter.project_slug | replace('-', '_') | replace('_', '\\_') }}/rust_files/```
+```cargo build --release```
+
+Then local setup can be accomplished by running ```pip install -e .``` in the main directory
 
 There is pre-built setup for Docker and Podman.
