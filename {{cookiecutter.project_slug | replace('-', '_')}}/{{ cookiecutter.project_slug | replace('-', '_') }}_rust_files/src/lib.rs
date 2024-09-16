@@ -1,6 +1,6 @@
 // src/lib.rs
 
-// `` MUST BE RUN BEFORE ANY RUST INTEGRATIONS WILL WORK
+// IMPORTANT: `cargo build --release` MUST BE RUN BEFORE ANY RUST INTEGRATIONS WILL WORK
 
 /// A simple example function to compute the square of a number.
 #[no_mangle]
