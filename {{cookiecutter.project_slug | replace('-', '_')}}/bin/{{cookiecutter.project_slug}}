@@ -1,0 +1,47 @@
+#!/usr/bin/env python
+import os
+import sys
+import json
+import os
+import platform
+import ctypes
+import logging
+
+logging.basicConfig(
+    level="DEBUG",
+    format="{{ cookiecutter.project_slug | upper | replace('-', '_')}} - %(module)s - %(level)s - %(message)s"
+)
+logger = logging.getLogger("bin")
+
+import {{ cookiecutter.project_slug | replace('-', '_') }}_files
+
+cwd = os.getcwd()
+logger.info(f"CWD: {cwd}")
+
+system = platform.system()
+rust_lib = None
+if system == "Linux":
+    rust_lib = ctypes.CDLL(os.path.join("target", "release", "lib{{ cookiecutter.project_slug | replace('-', '_') }}.so"))
+elif system == "Darwin":
+    rust_lib = ctypes.CDLL(os.path.join("target", "release", "lib{{ cookiecutter.project_slug | replace('-', '_') }}.dylib"))
+elif system == "Windows":
+    rust_lib = ctypes.CDLL(os.path.join("target", "release", "{{ cookiecutter.project_slug | replace('-', '_') }}.dll"))
+else:
+    logger.fatal("Unsupported operating system")
+    sys.exit(-1)
+
+secret_config_location = os.getenv("{{ cookiecutter.project_slug | upper | replace('-', '_') }}_SECRET_CONFIG_LOCATION", default = cwd + "/config/secret_config.json")
+# Grab the secret config
+try:
+    with open(secret_config_location, "r") as secret_file:
+        try:
+            secret_config = json.load(secret_file)
+        except BaseException as err:
+            logger.fatal(f"Invalid secret config - ensure JSON format. Error: {str(err)}")
+            sys.exit(-1)
+except BaseException as err:
+    logger.fatal(f"Invalid secret config location - please set environment variable {{ cookiecutter.project_slug | upper | replace('-', '_') }}_SECRET_CONFIG_LOCATION to location of the secret config. Error: {str(err)}")
+    sys.exit(-1)
+
+if __name__ == "__main__":
+    {{ cookiecutter.project_slug | replace('-', '_') }}_files.run(rust_lib = rust_lib, secret_config = secret_config, cwd = cwd)

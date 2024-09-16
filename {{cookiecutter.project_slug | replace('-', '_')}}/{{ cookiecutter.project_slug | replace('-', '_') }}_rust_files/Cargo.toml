@@ -1,0 +1,10 @@
+[package]
+name = "{{ cookiecutter.project_slug | replace('-', '_') }}"
+version = "0.1.0"
+authors = ["{{ cookiecutter.project_author }}"]
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
