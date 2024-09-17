@@ -9,7 +9,7 @@ import logging
 
 logging.basicConfig(
     level="DEBUG",
-    format="{{ cookiecutter.project_slug | upper | replace('-', '_')}} - %(module)s - %(message)s"
+    format="{{ cookiecutter.project_slug | upper | replace('-', '_')}} - %(asctime)s - %(name)s - %(module)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger("bin")
 
