@@ -9,6 +9,6 @@ pyo3 = { version = "0.22.3", features = ["extension-module"] }
 
 [lib]
 name = "_rust_functions" # private module to be nested into Python package, needs to match the name of the function with the `[#pymodule]` attribute
-path = "../{{ cookiecutter.project_slug | replace('-', '_') }}_rust/lib.rs
+path = "../{{ cookiecutter.project_slug | replace('-', '_') }}_rust/lib.rs"
 
 crate-type = ["cdylib"] # Required for python to import
