@@ -6,7 +6,7 @@ with open("requirements.txt", "r") as reqs:
     requirements = reqs.readlines()
 
 setup(
-    name = "{{ cookiecutter.project_slug }}",
+    name = "{{ cookiecutter.project_slug | replace('-', '_')}}",
     version = "0.0.0",
     description = "{{ cookiecutter.project_description }}",
     author = "{{ cookiecutter.project_author }}",

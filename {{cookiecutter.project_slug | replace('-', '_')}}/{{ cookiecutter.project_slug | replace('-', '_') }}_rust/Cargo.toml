@@ -1,0 +1,14 @@
+[package]
+name = "{{ cookiecutter.project_slug | replace('-', '_') }}"
+version = "0.1.0"
+authors = ["{{ cookiecutter.project_author }}"]
+edition = "2021"
+
+[dependencies]
+pyo3 = { version = "0.22.3", features = ["extension-module"] }
+
+[lib]
+name = "_rust_functions" # private module to be nested into Python package, needs to match the name of the function with the `[#pymodule]` attribute
+path = "../{{ cookiecutter.project_slug | replace('-', '_') }}_rust/lib.rs
+
+crate-type = ["cdylib"] # Required for python to import

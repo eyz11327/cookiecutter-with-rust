@@ -19,9 +19,10 @@ Describe the file structure
 
 ## Setup
 
-```cd {{ cookiecutter.project_slug | replace('-', '_') | replace('_', '\\_') }}/rust_files/```
-```cargo build --release```
 ```pip install -e .```
+
+You may need to grant executable permissions to the bin file, to accomplish this run the following command
+```chmod +x bin/{{ cookiecutter.project_slug | replace('-', '_') | replace('_','\\_') }}
 
 Then local setup can be accomplished by running ```pip install -e .``` in the main directory
 
