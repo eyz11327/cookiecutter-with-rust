@@ -1,6 +1,6 @@
 import logging
 from typing import Any, TypedDict
-from {{ cookiecutter.project_slug | replace('-', '_')}}_rust import add_numbers
+from {{ cookiecutter.project_slug | replace('-', '_')}}_rust._rust_functions import add_numbers
 logger = logging.getLogger("init")
 
 class SecretConfig(TypedDict):

@@ -1,7 +1,7 @@
 use pyo3::prelude::*;
 
 #[pyfunction]
-fn add_numbers(a: usize, b: usize) -> usize {
+fn add_numbers(a: f32, b: f32) -> f32 {
     a + b
 }
 
